@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/carlosealves2/test-auto-version/compare/test-auto-version-v1.2.0...test-auto-version-v1.3.0) (2025-10-26)
+
+
+### Features
+
+* add subtraction function and corresponding tests ([1782eb4](https://github.com/carlosealves2/test-auto-version/commit/1782eb4f85977dce9213ff315f69de609322d5d3))
+* add subtraction function and corresponding tests ([78875a0](https://github.com/carlosealves2/test-auto-version/commit/78875a019b7d38c1701a5a15cdf183eec6c07ed9))
+
 ## [1.2.0](https://github.com/carlosealves2/test-auto-version/compare/test-auto-version-v1.1.0...test-auto-version-v1.2.0) (2025-10-26)
 
 
