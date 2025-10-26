@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/carlosealves2/test-auto-version/compare/test-auto-version-v1.4.0...test-auto-version-v2.0.0) (2025-10-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* API changed from HTTP REST to gRPC protocol. All HTTP endpoints have been replaced with gRPC methods.
+
+### Features
+
+* convert REST API to gRPC ([88b0771](https://github.com/carlosealves2/test-auto-version/commit/88b07710023217d21580dc593ba71bc05864ec86))
+
 ## [1.4.0](https://github.com/carlosealves2/test-auto-version/compare/test-auto-version-v1.3.0...test-auto-version-v1.4.0) (2025-10-26)
 
 
