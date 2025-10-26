@@ -2,24 +2,37 @@ package main
 
 import (
 	"fmt"
-	"net/http"
+	"log"
+	"net"
 
 	"github.com/carlosealves2/test-auto-version/configs"
-	"github.com/carlosealves2/test-auto-version/internal/api"
+	grpcserver "github.com/carlosealves2/test-auto-version/internal/grpc"
 	"github.com/carlosealves2/test-auto-version/internal/service"
+	pb "github.com/carlosealves2/test-auto-version/proto"
+	"google.golang.org/grpc"
 )
 
 func main() {
-	fmt.Print("iniciando...")
+	fmt.Println("iniciando gRPC server...")
 
 	cfg := configs.NewConfigBuilder().WithEnv().Validate().Build()
 
-	mux := http.NewServeMux()
+	// Create calculator service
 	calculatorService := service.NewCalculatorService()
-	apiRouter := api.NewAPIRouter(calculatorService)
-	apiRouter.RegisterRoutes(mux)
 
-	fmt.Println("Server running on port", cfg.Port)
-	http.ListenAndServe(":"+cfg.Port, mux)
+	// Create gRPC server
+	grpcServer := grpc.NewServer()
+	calculatorServer := grpcserver.NewCalculatorServer(calculatorService)
+	pb.RegisterCalculatorServer(grpcServer, calculatorServer)
 
+	// Start listening
+	lis, err := net.Listen("tcp", ":"+cfg.Port)
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+
+	fmt.Printf("gRPC server running on port %s\n", cfg.Port)
+	if err := grpcServer.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }
