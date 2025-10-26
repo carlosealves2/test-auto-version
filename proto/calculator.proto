@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package calculator;
+
+option go_package = "github.com/carlosealves2/test-auto-version/proto/pb";
+
+// Calculator service provides arithmetic operations
+service Calculator {
+  // Add two numbers
+  rpc Add(OperationRequest) returns (OperationResponse);
+
+  // Subtract two numbers
+  rpc Subtract(OperationRequest) returns (OperationResponse);
+
+  // Multiply two numbers
+  rpc Multiply(OperationRequest) returns (OperationResponse);
+
+  // Divide two numbers
+  rpc Divide(OperationRequest) returns (OperationResponse);
+}
+
+// Request message containing two operands
+message OperationRequest {
+  int32 a = 1;
+  int32 b = 2;
+}
+
+// Response message containing the result
+message OperationResponse {
+  int32 result = 1;
+  string error = 2;
+}
